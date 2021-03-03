@@ -1,6 +1,4 @@
 ![Screenshot 2020-09-14 at 15 00 32](https://user-images.githubusercontent.com/71690194/109766160-7896f200-7bfe-11eb-81dd-d1e7ead5548c.png)
-# PHPCodingTasks
-Vending Machine
 
 # ABBA
 
