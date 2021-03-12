@@ -23,4 +23,4 @@ function homeWork($string,$number)
     echo $string;
 }
 
-homeWork('aaab', 2);
+homeWork('aab', 1);
