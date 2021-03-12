@@ -1,7 +1,7 @@
 <?php
 echo "Waiting for money: \n";
 $handle = fopen ("php://stdin","r");
-$cents = (int)trim(fgets($handle));
+$inputcoins = (int)trim(fgets($handle));
 fclose($handle);
 
 $coins = [
@@ -16,8 +16,8 @@ $coins = [
 ];
 
 
-if (!in_array($cents, array_keys($coins))) {
-    echo "Cannot accept $cents cents";
+if (!in_array($inputcoins, array_keys($coins))) {
+    echo "Cannot accept $inputcoins cents";
     exit(1);
     //die
 
@@ -28,7 +28,7 @@ $products = [
     'C' => 233,
 ];
 
-echo "\nGot {$cents} cents, what do you want to buy?\n\n";
+echo "\nGot {$inputcoins} cents, what do you want to buy?\n\n";
 
 
 
@@ -48,7 +48,7 @@ echo "\nGot {$cents} cents, what do you want to buy?\n\n";
         echo "- {$product} costs {$cost} cents\n";
 
         $productCost = $products[$product];
-        $leftover = $cents - $productCost;
+        $leftover = $inputcoins - $productCost;
 
         $output = "You bought {$product} for {$productCost}, your change {$leftover} \n";
 
