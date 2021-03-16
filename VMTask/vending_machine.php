@@ -1,9 +1,15 @@
 <?php
 echo "Waiting for money: \n";
 $handle = fopen ("php://stdin","r");
-$inputcoins = (int)trim(fgets($handle));
+$inputcoins = strtolower(trim(fgets($handle)));
+$sum = 0;
 fclose($handle);
+// "2e 1e 50c 20c"
 
+$split = explode(" ", $inputcoins);
+//print_r($split);
+
+//Defines the amount of the money the machines accepts
 $coins = [
     '2e' => 200,
     '1e'=> 100,
@@ -15,31 +21,39 @@ $coins = [
     '1c' => 1,
 ];
 
+    foreach ($split as $inputcoins) {
+    // Rejects any amount the machine does not accept & Adds the value of coins to total amount.
+    if (in_array($inputcoins, array_keys($coins))) {
+        $sum += $coins[$inputcoins];
+    } else {
+        echo "Cannot accept this amount";
+        exit(1);
+    }}
+//Displays total amount of currency separately
+    $cur = "cents";
+    if ($inputcoins == '1e' || $inputcoins == '2e') {
+        $cur = "euros";
+    }
+        echo "\nGot " . preg_replace('~\D~', '', $sum) . " $cur, what do you want to buy?\n\n";
 
-if (!in_array($inputcoins, array_keys($coins))) {
-    echo "Cannot accept $inputcoins cents";
-    exit(1);
-    //die
+// Lists available products and costs
+    $products = [
+        'A' => 95,
+        'B' => 126,
+        'C' => 233,
+    ];
 
-}
-$products = [
-    'A' => 95,
-    'B' => 126,
-    'C' => 233,
-];
-
-echo "\nGot {$inputcoins} cents, what do you want to buy?\n\n";
-
-
-
+//Product selection display
     $keys = implode(' or ', array_keys($products));
-    echo "\nType the letter of the product {$keys}\n";
+        echo "\nType the letter of the product {$keys}\n";
 
     $handle = fopen("php://stdin", "r");
     $product = (string)trim(fgets($handle));
     fclose($handle);
 
-    echo "\n\n";
+        echo "\n\n";
+
+//Rejects product not offered by machine
 
     if (!in_array($product, array_keys($products))) {
         echo "Invalid Product";
@@ -47,13 +61,16 @@ echo "\nGot {$inputcoins} cents, what do you want to buy?\n\n";
         $cost = $products[$product];
         echo "- {$product} costs {$cost} cents\n";
 
-        $productCost = $products[$product];
-        $leftover = $inputcoins - $productCost;
+//Buys product and gives you change
 
-        $output = "You bought {$product} for {$productCost}, your change {$leftover} \n";
+    $productCost = $products[$product];
+    $leftover = $sum - $productCost;
+
+    $output = "You bought {$product} for {$productCost}, your change {$leftover} \n";
 
         echo $output;
     }
+
 
 
 
