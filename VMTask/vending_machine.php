@@ -1,10 +1,16 @@
 <?php
-echo "Waiting for money: \n";
-$handle = fopen("php://stdin", "r");
-$inputcoins = strtolower(trim(fgets($handle)));
-$sum = 0;
-fclose($handle);
+function askMoney()
+{
+    echo "Waiting for money: \n";
+    $handle = fopen("php://stdin", "r");
+    $inputcoins = strtolower(trim(fgets($handle)));
+    fclose($handle);
+
+    return $inputcoins;
+}
 // "2e 1e 50c 20c"
+$sum = 0;
+$inputcoins = askMoney();
 
 $split = explode(" ", $inputcoins);
 
@@ -61,8 +67,12 @@ if (!in_array($product, array_keys($products))) {
     $cost = $products[$product];
     echo "- {$product} costs {$cost} cents\n";
 
-//Buys product and gives you change
-
+if ($sum < $products[$product]) {
+    echo "Sorry, not enough money";
+    echo "\n";
+    askMoney();
+} else {
+    //Buys product and gives you change
     $productCost = $products[$product];
     $leftover = $sum - $productCost;
 
@@ -70,6 +80,9 @@ if (!in_array($product, array_keys($products))) {
 
     echo $output;
 }
+}
+
+
 
 
 
