@@ -1,44 +1,5 @@
 <?php
-function askMoney()
-{
-    echo "Waiting for money: \n";
-    $handle = fopen("php://stdin", "r");
-    $inputcoins = strtolower(trim(fgets($handle)));
-    fclose($handle);
-
-    return calculateTotal($inputcoins);
-}
-
-function calculateTotal($inputcoins) {
-    $sum = 0;
-
-    // Defines the amount of money the machines accepts.
-    $coins = [
-        '2e' => 200,
-        '1e' => 100,
-        '50c' => 50,
-        '20c' => 20,
-        '10c' => 10,
-        '5c' => 5,
-        '2c' => 2,
-        '1c' => 1,
-    ];
-    $split = explode(" ", $inputcoins);
-
-
-    foreach ($split as $inputcoins) {
-        // Adds the value of coins to total amount & rejects any amount the machine does not accept.
-        if (in_array($inputcoins, array_keys($coins))) {
-            $sum += $coins[$inputcoins];
-        } else {
-            echo "Cannot accept this amount";
-            exit(1);
-        }
-
-    }
-
-    return $sum;
-}
+require "vendor/autoload.php";
 // "2e 1e 50c 20c"
 $sum = askMoney();
 
