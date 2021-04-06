@@ -1,0 +1,13 @@
+{
+    "description": "",
+    "name": "VendingMachine",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+
+    "autoload": {
+        "files": ["askMoneyFunction.php", "calculateTotalFunction.php"]
+    }
+}
+
+
