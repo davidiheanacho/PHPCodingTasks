@@ -1,0 +1,10 @@
+name: ci
+on: [pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: shivammathur/setup-php@v2
+      - run: cd VMTask && composer install
+      - run: cd VMTask && vendor/bin/phpunit Tests

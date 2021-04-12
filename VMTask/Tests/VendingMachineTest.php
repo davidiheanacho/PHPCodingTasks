@@ -23,12 +23,23 @@ class VendingMachineTest extends TestCase
 
   }
 
-  public function testValidateSum() {
+    /**
+     * @dataProvider dataVendingMachine
+     */
+  public function testValidateSum(string $sum , int $expected) {
 
-      $sum = "1e 2e 50c";
       $result = calculateTotal($sum);
 
-      $this->assertEquals(350, $result);
+      $this->assertEquals($expected, $result);
 
   }
+
+  public function dataVendingMachine(): array {
+      return [
+          ["1e 2e 50c", 350],
+          ["10c 2e 1c", 211],
+          ["1c 5c 1e", 106]
+      ];
+  }
+
 }

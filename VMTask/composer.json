@@ -1,6 +1,6 @@
 {
     "description": "",
-    "name": "VendingMachine",
+    "name": "falcon/vendingmachine",
     "require-dev": {
         "phpunit/phpunit": "^9.5"
     },
