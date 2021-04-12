@@ -7,4 +7,4 @@ jobs:
       - uses: actions/checkout@main
       - uses: shivammathur/setup-php@v2
       - run: cd VMTask && composer install
-      - run: cd VMTask && vendor/bin/phpunit
+      - run: cd VMTask && vendor/bin/phpunit Tests
