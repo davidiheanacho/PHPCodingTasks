@@ -4,6 +4,7 @@ function calculateTotal(string $inputcoins) {
 
     // Defines the amount of money the machines accepts.
     $coins = [
+        '5e' => 500,
         '2e' => 200,
         '1e' => 100,
         '50c' => 50,
