@@ -1,5 +1,5 @@
 <?php
-function calculateTotal(string $inputcoins) {
+function calculateTotal(string $inputcoins) :int {
     $sum = 0;
 
     // Defines the amount of money the machines accepts.

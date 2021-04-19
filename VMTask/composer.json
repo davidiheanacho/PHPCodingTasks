@@ -6,7 +6,7 @@
     },
 
     "autoload": {
-        "files": ["askMoneyFunction.php", "calculateTotalFunction.php"]
+        "files": ["askMoneyFunction.php", "calculateTotalFunction.php", "calculatechange.php"]
     }
 }
 

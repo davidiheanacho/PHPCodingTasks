@@ -43,5 +43,33 @@ class VendingMachineTest extends TestCase
       ];
   }
 
+    /**
+     * @dataProvider dataChange
+     */
+  public function testCalculateChange(int $leftover, string $expected) {
+      $coins = [
+          '5e' => 500,
+          '2e' => 200,
+          '1e' => 100,
+          '50c' => 50,
+          '20c' => 20,
+          '10c' => 10,
+          '5c' => 5,
+          '2c' => 2,
+          '1c' => 1,
+      ];
+      $result = calculateChange($leftover, $coins);
+
+      $this->assertSame($expected, $result);
+
+  }
+
+  public function dataChange() :array {
+      return [
+          [60, "50c 10c"],
+          [4, "2x2c"],
+      ];
+
+  }
 
 }
